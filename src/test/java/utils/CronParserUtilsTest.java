@@ -1,13 +1,13 @@
 package utils;
 
-import Enums.TimeField;
+import com.Parser.Enums.TimeField;
+import com.Parser.utils.CronParserUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class CronParserUtilsTest {
 

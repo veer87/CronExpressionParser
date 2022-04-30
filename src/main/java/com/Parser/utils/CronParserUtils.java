@@ -51,9 +51,9 @@ public class CronParserUtils {
 
         for (String split : splitsByComma) {
 
-            if (split.contains("*/")) split = split.replace("*/", "0/");
-
             ValidateExpressionSplit(split);
+
+            if (split.contains("*/")) split = split.replace("*/", "0/");
 
             if (split.contains("/")) {
                 int slashIdx = split.indexOf("/");
@@ -88,7 +88,7 @@ public class CronParserUtils {
         Set<Character> isSpecialCharsVisited = new HashSet<>();
         for (char ch : chars) {
             if (validSpecialSymbolSet.contains(ch)) {
-                if (isSpecialCharsVisited.contains(ch)) throw new CronParserException.NotValidExpression.NotValidSpecialCharacter("Not Valid Special Character found : " + split);
+                if (isSpecialCharsVisited.contains(ch)) throw new CronParserException.NotValidExpression.NotValidSpecialCharacter("Not Valid or duplicate special character found : " + split);
                 isSpecialCharsVisited.add(ch);
             } else if (!Character.isDigit(ch)) throw new CronParserException.NotValidExpression.NotValidNumericCharacter("Not Valid Numeric Character found: " + split);
         }
