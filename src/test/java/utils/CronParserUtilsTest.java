@@ -22,12 +22,68 @@ public class CronParserUtilsTest {
 
     @Test
     public void testParseTokenMinutes1() throws Exception {
+        List<String> expected = Arrays.asList("0 1 2 3 4 5 12 24 36 48");
+        List<String> actual = CronParserUtils.parseToken(TimeField.MINUTES, "4-5,*/12,1,2,3");
+
+        Assertions.assertEquals(expected, actual);
+
+    }
+
+    @Test
+    public void testParseTokenMinutes2() throws Exception {
         List<String> expected = Arrays.asList("2 32");
         List<String> actual = CronParserUtils.parseToken(TimeField.MINUTES, "2/30");
 
         Assertions.assertEquals(expected, actual);
 
     }
+
+    @Test
+    public void testParseTokenMinutes3() throws Exception {
+        List<String> expected = Arrays.asList("2 32");
+        List<String> actual = CronParserUtils.parseToken(TimeField.MINUTES, "2/*30");
+
+        Assertions.assertEquals(expected, actual);
+
+    }
+
+    @Test
+    public void testParseTokenHoursAll() throws Exception {
+        List<String> expected = generateNumbers(0, 23);
+        List<String> actual = CronParserUtils.parseToken(TimeField.HOURS, "*");
+
+        Assertions.assertEquals(expected, actual);
+
+    }
+
+    @Test
+    public void testParseTokenDayOfMonthAll() throws Exception {
+        List<String> expected = generateNumbers(1, 31);
+        List<String> actual = CronParserUtils.parseToken(TimeField.DAY_OF_MONTH, "*");
+
+        Assertions.assertEquals(expected, actual);
+
+    }
+
+    @Test
+    public void testParseTokenMonthAll() throws Exception {
+        List<String> expected = generateNumbers(1, 12);
+        List<String> actual = CronParserUtils.parseToken(TimeField.MONTH, "*");
+
+        Assertions.assertEquals(expected, actual);
+
+    }
+
+    @Test
+    public void testParseTokenDayOfWeekAll() throws Exception {
+        List<String> expected = generateNumbers(1, 7);
+        List<String> actual = CronParserUtils.parseToken(TimeField.DAY_OF_WEEK, "*");
+
+        Assertions.assertEquals(expected, actual);
+
+    }
+
+
 
     @Test
     public void testParseTokenMonth() throws Exception {

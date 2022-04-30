@@ -26,7 +26,7 @@ public class CronParser implements Api.Parser {
 
             String[] tokens = exp.split(" ");
 
-            if (tokens.length <= 0 || tokens.length > 6) throw new CronParserException.NotValidExpression.NotValidExpressionLength("No of expressions are zero or more than 6: " + tokens.length);
+            if (tokens.length <= 0 || tokens.length > 6) throw new CronParserException.NotValidExpression.NotValidExpressionLength("Number of expressions should be between 1 to 6: Given length = " + tokens.length);
 
             for (int i = 0; i < tokens.length; i++) {
                 result.put(TimeField.ofId(i).name(), CronParserUtils.parseToken(TimeField.ofId(i), tokens[i]));
@@ -38,7 +38,7 @@ public class CronParser implements Api.Parser {
             return e.getMessage();
         } catch (Exception e) {
             logger.log(Level.SEVERE, e.getMessage(), (Object[]) null);
-            return "Not Valid Expression";
+            return "Not Valid Expression : " + exp;
         } finally {
 
         }

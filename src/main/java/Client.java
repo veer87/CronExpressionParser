@@ -23,7 +23,7 @@ public class Client {
             line = reader.readLine();
             if (line.equalsIgnoreCase("e") || line.equalsIgnoreCase("q")) break;
 
-            System.out.println("Give expression space separated, supported only Min Hour Day_Of_Month Month Day_of_Week and valid special characters are [*, /, -] \n");
+            System.out.println("Give expression space separated, supported only [Min Hour Day_Of_Month Month Day_of_Week Command] and valid special characters are [*, /, -] \n");
             line = reader.readLine();
             System.out.println(cronParser.parse(line));
 
