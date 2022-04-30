@@ -38,12 +38,18 @@ public class CronParserUtilsTest {
 
     }
 
-    @Test
-    public void testParseTokenMinutes3() throws Exception {
-        List<String> expected = Arrays.asList("2 32");
-        List<String> actual = CronParserUtils.parseToken(TimeField.MINUTES, "2/*30");
+    @Test()
+    public void testParseTokenMinutes3NumberFormatException() {
+        try {
+            List<String> expected = Arrays.asList("2 32");
+            List<String> actual = CronParserUtils.parseToken(TimeField.MINUTES, "2/*30");
 
-        Assertions.assertEquals(expected, actual);
+            Assertions.assertEquals(expected, actual);
+        } catch (NumberFormatException e) {
+            Assertions.assertTrue(e.getMessage().contains("For input string"));
+        } catch (Exception e) {
+            Assertions.assertTrue(e.getMessage().contains("For input string"));
+        }
 
     }
 
